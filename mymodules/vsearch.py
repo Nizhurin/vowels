@@ -5,9 +5,17 @@ def search4vowels(phrase: str) -> set:
     return found
 
 
-def search4letters(phrase: str, letters: str='aeiou') -> set:
+def search4letters(phrase: str, letters: str='aeiou', ignore_case: bool=False) -> dict:
     """This function search letters in input phrase."""
-    return set(letters).intersection(set(phrase))
+    mydict = {}
+    if bool(ignore_case):
+        phrase = phrase.lower()
+        letters = letters.lower()
+    for char in phrase:
+        if char in letters:
+            mydict.setdefault(char,0)
+            mydict[char] += 1
+    if bool(mydict) == False:
+        mydict['No found letters in input phrase'] = 0
+    return mydict
 
-print(search4vowels('hitchhiker'))
-print(search4letters('hitcjhiker'))

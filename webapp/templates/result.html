@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block body %}
+<h2>{{ the_title }}</h2>
+
+<p>You submitted the following data:</p>
+<div>
+<table>
+        <tr>
+            <th>Phrase:</th>
+            <th>Letters:</th>
+            <th>Ignore case sensitive:</th>
+        </tr>
+        <tr>
+            <td>{{ the_phrase }}</td>
+            <td>{{ the_letters }}</td>
+            <td>{{ the_ignore_case }}</td>
+        </tr>
+</table>
+</div>
+<p>When "{{the_phrase }}" is search for "{{ the_letters }}", following
+result are returned:</p>
+<div>
+<table>
+<tr>
+    <th>Found Letters in input Phrase:</th>
+    <th>Counts found letters in Phrase:</th>
+</tr>
+{% for key in the_results %}
+<tr>
+    <td>
+        {{ key }}
+    </td>
+    <td>
+        {{ the_results[key] }}
+    </td>
+</tr>
+{% endfor %}
+</table>
+</div>
+
+{% endblock %}
